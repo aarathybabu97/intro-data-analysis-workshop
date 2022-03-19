@@ -6,4 +6,4 @@
 Slides made using xaringan and a little bit of canva (because why not).
 Extended with xaringanthemer 
 
-## Click [here](https://aarathybabu97.github.io/intro-data-analysis-workshop/#1) for the student copy of the palmerpenguins data analysis 
+## Click [here](https://rpubs.com/aarathybabu/ida-techtalk-amrita) for the student copy of the palmerpenguins data analysis 
