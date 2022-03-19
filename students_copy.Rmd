@@ -1,0 +1,197 @@
+---
+title: "Exploratory Data Analysis of Palmer Penguins"
+author: "Insert your name"
+date: "19/03/2022"
+output: html_document
+---
+
+> Palmer penguin R package contains two datasets: `penguins_raw` and `penguins`. Today we’ll focus on a curated subset of the raw data in the package named `penguins` and as you can see from their name, penguins is pre-processed data.  
+
+Lets go through each stage of the data science project first! 
+
+- Import
+- Tidy
+- Transform
+- Visualise
+- Model (Not using that today!)
+- Communicate
+
+# Import:  Load dataset and library on workspace.
+
+- After installing the packages, you can load them by using the `library` function.
+
+- There are two R packages that are used to transform and visualise data : `dplyr` and `ggplot2`. You can find these two combined with various other packages in `tidyverse`
+
+- The dataset from the R package can be loaded using `data()`. 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#install.packages("palmerpenguins")
+library(palmerpenguins) # for data
+library(tidyverse) # for data-handling & visualisation
+data(penguins) # load pre-processed penguins 
+view(penguins)
+```
+
+
+# Tidy 
+
+The data we have is already preprocessed therefore it is in tidy format. 
+
+
+# Summary of Dataset
+
+- Before doing anything, we should first see the summary of Dataset! 
+
+
+```{r glimpse}
+glimpse(penguins)
+
+```
+
+The data has 344 rows or observations and 8 variables. 
+
+
+- Get data dictionary from the help file. Try ?penguins
+
+
+![Difference between bill length and bill depth](https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png)
+
+
+
+
+```{r summary}
+summary(penguins)
+```
+### What do you gather from here?
+
+- The data gathered is from 2007-2009
+- Three species : Adelie , Chinstrap, Gentoo
+- 3 Island : Biscoe, Dream, Torgersen
+- Has some unknown values  
+
+### You can visualise the data as a whole as well 
+
+```{r visdat}
+#install.packages(visdat)
+visdat::vis_dat(penguins)
+```
+
+
+# Transform
+
+- select desired variables & filter out unknowns. You can also create new variables from existing variables. 
+
+```{r transform}
+data_subset<- penguins%>%
+  select(species,bill_depth_mm,flipper_length_mm,bill_length_mm)%>%
+  filter(!is.na(flipper_length_mm),!is.na(bill_depth_mm),!is.na(bill_length_mm))%>%
+  mutate(ratio=bill_depth_mm/bill_length_mm)
+```
+
+
+# Visualise 
+
+- You can use functions from ggplot2 package to create various visualisations. 
+
+- ggplot() creates a coordinate system that you can add layers to. The first argument of ggplot() is the dataset to use in the graph. 
+
+- ggplot2 comes with many geom functions that each add a different type of layer to a plot.
+
+- Each geom function in ggplot2 takes a mapping argument. This defines how variables in your dataset are mapped to visual properties.
+
+- The mapping argument is always paired with aes(), and the x and y arguments of aes() specify which variables to map to the x and y axes.
+
+- You can also tweek the vis by adding other aesthetics by including things like the size, the shape, or the color of your points/graph.
+
+```{r density-flip}
+  ggplot(data_subset)+
+  geom_density(mapping = aes(x=flipper_length_mm,fill=species),alpha=0.5)+
+  ggtitle("Flipper Length of different species")
+```
+
+- Alpha argument here controls the shading 
+
+You can do the same thing with histogram!
+
+```{r histogram-flip}
+data_subset%>%
+  ggplot()+
+  geom_histogram(mapping = aes(x=flipper_length_mm,fill=species),alpha=0.8)+
+  ggtitle("Flipper Length of different species")
+```
+
+
+###  What do you gather from this?
+
+- Flipper length seperates Gentoo from the others. Adelie and Chinstrap are more similar in that regard. 
+
+### Your turn : Density plot of Bill length of different species and what do you gather from it
+
+```{r density-bill, eval=FALSE}
+data_subset%>%
+  ggplot()+
+  geom_density(mapping = aes(x=.....,fill=species),alpha=0.5)+
+  ggtitle("Bill Length of different species")
+```
+
+Set the chunk options as eval = TRUE when you are ready to include the output of this code in your report. 
+
+### What do you gather from this?
+
+Answer here ! 
+ 
+
+### Lets take a closer look at flipper length 
+
+```{r flip-boxcox}
+data_subset%>%
+  ggplot()+
+  geom_boxplot(mapping = aes(x=species,y=flipper_length_mm),fill="blue",alpha=0.5)+
+  ggtitle("Comparison of flipper Length of different species")
+```
+
+
+### How to interpret a boxplot ?
+
+![](https://miro.medium.com/max/1400/1*2c21SkzJMf3frPXPAR_gZA.png)
+
+### How does the bill vary between species ?
+
+- You can give color to different species to see the underlying patterns. 
+
+
+```{r scatterplot}
+penguins%>%
+  ggplot()+
+  geom_point(mapping = aes(x=bill_length_mm,y=bill_depth_mm,color=species),shape=16)+
+  ggtitle("Comparing different species wrt bill Length & depth")
+```
+- shape argument assigns shapes to these points. If you dont want a dot you can choose the code shown below to pick any particular shape you want. 
+
+
+![Code for choosing shape in ggplot](https://d33wubrfki0l68.cloudfront.net/e28a1b57b6622cf67fd8a7e01c6a9955914f8fe9/635be/visualize_files/figure-html/shapes-1.png)
+
+### What do you gather from this?
+
+- Adelie has a shorter bill length but a deeper bill. The opposite applies for Gentoo and Chinstrap is somehwere in the middle. 
+
+
+# Conclude 
+
+
+Feel free to explore further and conclude important findings here. 
+
+
+# References
+
+It is important that you credit the original authors of the R packages or any sources you have used to create this report. 
+
+For citing R packages, you can use the function `citation(packagename)`. 
+
+- Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/
+
+- Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source
+  Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
