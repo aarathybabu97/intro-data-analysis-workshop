@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Data Analysis Using R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Aarathy Babu" />
+    <meta name="date" content="2022-03-19" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-image: url("images/titleimage.png")
+background-size: cover
+
+
+
+
+
+---
+class: inverse center middle
+
+# Little bit about myself
+
+
+---
+class: inverse 
+
+
+## Before 
+
+.left-column[
+
+[**Education**](#3)
+
+[Telethon Kids Institute](#4)
+
+]
+
+.right-column[
+
+#### Undergraduate degree
+B.Tech in Electrical and Electronics Engineering&lt;br/&gt;
+Amrita School of Engineering &lt;br/&gt;
+Kerala,India
+
+
+#### Post graduate degree
+Master of Business Analytics&lt;br/&gt;
+Monash University &lt;br/&gt;
+Melbourne, Australia
+]
+
+---
+class: inverse 
+
+## After 
+
+
+.left-column[
+
+[Education](#3)
+
+[**Telethon Kids Institute**](#4)
+]
+
+.right-column[
+
+#### About Telethon Kids Institute
+The Telethon Kids Institute is based within the Perth Children’s Hospital, and is one of the largest medical research institutes in Australia dedicated to improve the health and wellbeing of children.&lt;br/&gt;
+
+
+#### Infectious Disease Modeller
+
+Develop statistical and mathematical analyses of COVID-19 transmission in Australia.
+
+
+]
+
+
+
+---
+class: inverse bold-last-item
+
+
+## So what are we doing here ?!
+
+- Data science allows you to turn raw data into knowledge, understanding, and insight.
+
+- To give you a very brief intro into how you can analyse data and gather some insights from it using R. 
+
+- A walk through some exploratory data analysis on a lovely penguins dataset. This is data about penguins collected by Dr. Kristen Gorman and the Palmer Station in Antarctica. Allison Horst put it into a R package called palmerpenguins.
+
+---
+class: inverse center middle
+
+## To help you through all your questions during the lecture, I invited Mr. Aryan Jain, a fellow data scientist from my alma mater. 
+
+&lt;center&gt;&lt;img src="https://media-exp1.licdn.com/dms/image/C5603AQHcj0CTcQb3_A/profile-displayphoto-shrink_800_800/0/1638509886904?e=1652918400&amp;v=beta&amp;t=w8dHLkrbFNltRsmfWI9VVVs12Y2QzEWyOGHuNxh61S0" alt="Aryan Jain" height="200px" /&gt;&lt;/center&gt;
+
+Feel free to chuck in all your questions in the chat ! 
+
+---
+class: inverse bold-last-item
+
+### Why R? 
+
+1. Because it is FREE! 
+--
+
+1. Powerful: Over 15000 contributed packages on the main repository (CRAN), as of March 2020, provided by top international researchers and programmers.
+--
+
+1. Flexible: It is a language, and thus allows you to create your own solutions
+--
+
+1. Community: Large global community friendly and helpful, lots of resources 
+
+
+---
+class: inverse bold-last-item
+## That brings us to RStudio !
+
+- R is a statistical programming language
+
+- RStudio is a convenient interface for R (an integrated
+development environment, IDE)
+
+&gt; **"If R were an airplane, RStudio would be the airport, providing many, many supporting services that make it easier for you, the
+pilot, to take off and go to awesome places. Sure, you can fly an
+airplane without an airport, but having those runways and
+supporting infrastructure is a game-changer."
+&lt;br&gt;
+Julie Lowndes**
+
+---
+class: inverse 
+## Here is what a typical data science project looks like !
+
+&lt;center&gt;&lt;img src="images/datascience.png" alt="Source: R 4 Data Science by Hadley Wickham" height="200px" /&gt;&lt;/center&gt;
+
+
+- **Import your data into R** : Take data stored in a file, database, or web application programming interface (API), and load it into a data frame in R.
+
+- **Tidy the data** : To structure the data, you MUST tidy it. Makes arriving at your research questions so much easier. Three rules makes a dataset tidy: 
+    + variables are in columns
+    + observations are in rows
+    + values are in cells
+
+---
+class: inverse 
+
+- **Transform** : Transformation includes narrowing in on observations of interest. 
+For example: 
+  + Creating new variables that are functions of existing variables (like computing speed from distance and time)
+  + Calculating a set of summary statistics (like counts or means). 
+  
+**Tidy + Transform = Data Wrangling**
+
+##### Two main engines of knowledge generation: visualisation and modelling!
+
+- **Visualisation** : A good visualisation will show you things that you did not expect, or raise new questions about the data.
+
+- **Models** : Once you have made your questions sufficiently precise, you can use a model to answer them. The goal of a model is to provide a simple low-dimensional summary of a dataset. You can use models to partition data into patterns and noise.
+
+- **Communication** : Absolutely critical! It doesn’t matter how well your models and visualisation have led you to understand the data unless you can also communicate your results to others.
+
+  + This is where R Markdown could help! 
+  
+
+```r
+install.packages("rmarkdown")
+```
+  
+
+---
+class: inverse 
+ 
+## Lets do some exploring!
+
+The `palmerpenguins` data contains size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica.
+
+
+```r
+install.packages("palmerpenguins")
+```
+
+&lt;center&gt;&lt;img src="images/palmer.png" height="370px" /&gt;&lt;/center&gt;
+
+
+
+---
+class: inverse center middle
+
+### Live Demo 
+
+- You can find the R Markdown file with codes [here](https://github.com/aarathybabu97/intro-data-analysis-workshop/blob/main/students_copy.Rmd)
+- Use the link [here](https://rpubs.com/aarathybabu/ida-techtalk-amrita) to check out the reference file. 
+
+---
+
+class: inverse 
+
+# References
+
+- Resources : R for Data Science by Hadley Wickham
+
+- Slides created via the R packages:
+
+  + [**xaringan**](https://github.com/yihui/xaringan)&lt;br&gt;
+  + [gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+  
+---
+class: inverse center middle
+
+# Thank you!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
